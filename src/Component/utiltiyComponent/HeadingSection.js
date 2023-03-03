@@ -3,7 +3,7 @@ import React from 'react';
 const HeadingSection = ({children}) => {
   
     const makingArray=children.split(", ")
-    console.log(makingArray)
+    
     return (
         <>    
             <h2 className='text-4xl text-center text-green-400 font-bold my-4'>{makingArray[0]}</h2>

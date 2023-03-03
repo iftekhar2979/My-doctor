@@ -3,15 +3,14 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
 const SignUp = () => {
-  const { register, handleSubmit, errors, watch } = useForm();
-  const {createNewUser,setUser}=useContext(AuthContext)
+  const { register, handleSubmit,watch,formState: { errors } } = useForm();
+  const {createNewUser,setUser,updateUserProfile}=useContext(AuthContext)
   const onSubmit = (obj) => {
     const {displayName,email,password,address,city}=obj
-    console.log(email,password)
     createNewUser(email,password)
     .then(result=>{
        const user=result.user
-      console.log(user)
+       updateUserProfile(displayName)
        setUser(user)
     }).catch(err=>{
        console.log("err : ",err.message)
@@ -38,22 +37,31 @@ const SignUp = () => {
                         type='text'
                         name='full_name'
                         id='full_name'
-                        className='h-10 border mt-1 rounded px-4 w-full bg-gray-50'
-                        {...register('displayName')}
+                        className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${errors.displayName?.type === 'required'&& "border-red-400 shadow-md"}`}
+                        {...register('displayName',{required:true})}
+                        aria-invalid={errors.displayName?'true':'false'}
+                        placeholder={errors.displayName?.type === 'required' &&"Name is required"}
                       />
+                    </div>
+                    <div>
+
+                    
                     </div>
 
                     <div className='md:col-span-5'>
                       <label for='email'>Email Address</label>
                       <input
-                        type='text'
+                        type='email'
                         name='email'
                         id='email'
-                        className='h-10 border mt-1 rounded px-4 w-full bg-gray-50'
-                        {...register('email')}
-                        placeholder='email@domain.com'
+                        className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${errors.email?.type === 'required'&& " border-red-400 shadow-md"}`}
+                        {...register('email',{ required: true })}
+                        aria-invalid={errors.email?'true':'false'}
+                        placeholder= {errors.email?.type === 'required' && "Email is required"}
+                        
                       />
                     </div>
+                  
 
                     <div className='md:col-span-3'>
                       <label for='address'>Address / Street</label>
@@ -84,11 +92,13 @@ const SignUp = () => {
                         type='password'
                         name='password'
                         id='password'
-                        className='h-10 border mt-1 rounded px-4 w-full bg-gray-50'
-                        {...register('password')}
-                        placeholder=''
+                        className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${errors.email?.type === 'required'&& " border-red-400 shadow-md"}`}
+                        {...register('password',{ required: true })}
+                        aria-invalid={errors.password?'true':'false'}
+                        placeholder= {errors.password?.type === 'required' && "Email is required"}
                       />
                     </div>
+                   
                     <div className='md:col-span-2'>
                       <label for='confirmPassword'>Confirm Password</label>
                       <input
@@ -96,7 +106,7 @@ const SignUp = () => {
                         name='confirmPassword'
                         id='confirmPassword'
                         className='h-10 border mt-1 rounded px-4 w-full bg-gray-50'
-                        {...register('confirmPassoword')}
+                        {...register('confirmPassoword',{ required: true })}
                         placeholder=''
                       />
                     </div>
