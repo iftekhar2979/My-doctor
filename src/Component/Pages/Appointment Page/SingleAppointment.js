@@ -14,7 +14,7 @@ const SingleAppointment = ({data,selected,setService}) => {
           <p>{slots[0]}</p>
           <p>{slots.length? `${slots.length} are availible`:"no space availibe"}</p>
          
-          <label htmlFor="my-modal-6" onClick={()=>setService(data)}  className={`btn btn-warning ${slots.length===0 ? "btn-disabled cursor-not-allowed focus:outline-none disabled:opacity-75":""}`}>open modal</label>
+          <label htmlFor="my-modal-6" onClick={()=>setService(data)}  className={`btn btn-warning ${slots.length===0 ? "btn-disabled cursor-not-allowed focus:outline-none disabled:opacity-75":""}`}>Book Now</label>
          
         </div>
       </div>

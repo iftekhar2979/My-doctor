@@ -7,7 +7,7 @@ import TotalAppoinment from './TotalAppoinment';
 const Appointment = () => {
     const [selected,setSelected]=useState(new Date())
     const [totalAppointments,setTotalAppoinments]=useState()
-    const [service,setService]=useState()
+    const [service,setService]=useState(null)
     useEffect(()=>{
 
         fetch('totalappointment.json')
@@ -20,7 +20,11 @@ const Appointment = () => {
             <Hero selected={selected} setSelected={setSelected}></Hero>
             <AvailableAppointment selected={selected}></AvailableAppointment>
             <TotalAppoinment data={totalAppointments} selected={selected} setService={setService}></TotalAppoinment>
-            <Modal service={service} selected={selected}></Modal>
+           
+           {
+            service && <Modal service={service} setService={setService} selected={selected}></Modal>
+           }
+            
         </div>
     );
 };
