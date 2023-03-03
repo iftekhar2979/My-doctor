@@ -2,7 +2,7 @@ import React from 'react';
 
 const BannerCard = ({ data }) => {
   const { image, title, details, bg } = data;
-  console.log(data);
+ 
   return (
     <div className={`card w-auto ${bg} text-primary-content`}>
       <div className='flex p-8'>
