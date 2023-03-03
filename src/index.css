@@ -11,3 +11,35 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.bg-img{
+  background: url("../src/asset/bg.png");
+  content: "";
+  position: relative;
+  opacity: 1;
+  width: 100%;
+  z-index: 999;
+  
+}
+.d-flex{
+  display: flex;
+}
+.hero-content-service {
+  z-index: 0;
+  max-width: 80rem;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding:0rem 1rem;
+  display: flex;
+}
+.img-bg-appointment{
+  background-image: url("./asset/appointment.png");
+  content: "";
+  position: relative;
+}
+.contact-bg{
+  background-image: url("./asset/appointment.png");
+  content: "";
+  position: relative;
+}
