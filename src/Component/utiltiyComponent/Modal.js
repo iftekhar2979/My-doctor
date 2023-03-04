@@ -1,8 +1,11 @@
+import axios from 'axios';
+import { format } from 'date-fns';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import Button from '../../Component/utiltiyComponent/Button';
 
 const Modal = ({ service, selected, setService }) => {
+  // console.log(selected)
   const {
     register,
     handleSubmit,
@@ -10,7 +13,10 @@ const Modal = ({ service, selected, setService }) => {
     formState: { errors },
   } = useForm();
   const onSubmit = (obj) => {
-    console.log(obj);
+    
+    axios.post('http://localhost:8000/booking',{service:service.name,...obj})
+    .then(res=>console.log(res))
+    .catch(err=>console.log(err))
     setService('');
   };
   return (
@@ -25,8 +31,8 @@ const Modal = ({ service, selected, setService }) => {
               <input
                 type='text'
                 className='input input-bordered w-full max-w-xs bg-warning'
-                defaultValue={selected}
-                {...register('date', { required: true })}
+                value={format(selected,'PP')}
+                {...register('bookingDate', { required: true })}
               />
             </div>
             <div className='my-2'>
@@ -43,7 +49,7 @@ const Modal = ({ service, selected, setService }) => {
               <input
                 type='text'
                 placeholder='Your Name'
-                {...register('name', { required: true })}
+                {...register('patientName', { required: true })}
                 aria-invalid={errors.name ? 'true' : 'false'}
                 className='input input-bordered w-full max-w-xs'
               />

@@ -13,7 +13,7 @@ const Hero = ({selected,setSelected}) => {
         mode="single"
         selected={selected}
         onSelect={setSelected}
-
+      
         />
           <div>
             <img src="https://www.evolveip.net/hubfs/Imported_Blog_Media/Call-Center-Etiquette-New.jpg" alt="" />

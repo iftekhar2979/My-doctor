@@ -7,7 +7,6 @@ import TotalAppoinment from './TotalAppoinment';
 
 const Appointment = () => {
     const [selected,setSelected]=useState(new Date())
-    // const [totalAppointments,setTotalAppoinments]=useState()
     const [service,setService]=useState(null)
  
     const {data:totalAppointments=[]}=useQuery({
@@ -19,14 +18,6 @@ const Appointment = () => {
         }
     }
     )
-    // console.log(totalAppointments)
-    // useEffect(()=>{
-
-    //     fetch('totalappointment.json')
-    //     .then(res=>res.json())
-    //     .then(data=>setTotalAppoinments(data))
-    //     .catch(err=>console.log(err))
-    // },[])
     return (
         <div>
             <Hero selected={selected} setSelected={setSelected}></Hero>
