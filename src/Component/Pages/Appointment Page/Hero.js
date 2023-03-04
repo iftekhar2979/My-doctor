@@ -16,7 +16,7 @@ const Hero = ({selected,setSelected}) => {
 
         />
           <div>
-            <img src="https://www.evolveip.net/hubfs/Imported_Blog_Media/Call-Center-Etiquette-New.jpg" alt="" srcset="" />
+            <img src="https://www.evolveip.net/hubfs/Imported_Blog_Media/Call-Center-Etiquette-New.jpg" alt="" />
           </div>
         </div>
       </div>

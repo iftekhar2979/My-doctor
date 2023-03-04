@@ -15,9 +15,10 @@ const Modal = ({ service, selected, setService }) => {
   };
   return (
     <div className='flex justify-center'>
-      <input type='checkbox' id='my-modal-6' className='modal-toggle' />
+      <input type='checkbox' id='booking-Modal' className='modal-toggle' />
       <div className='modal modal-bottom sm:modal-middle'>
-        <div className='modal-box w-96'>
+        <div className='modal-box w-96 '>
+        <label htmlFor="booking-Modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
           <h3 className='font-bold text-lg'>{service?.name}</h3>
           <form action='' onSubmit={handleSubmit(onSubmit)}>
             <div>

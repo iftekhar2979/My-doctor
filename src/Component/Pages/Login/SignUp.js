@@ -32,7 +32,7 @@ const SignUp = () => {
                 <div className='lg:col-span-2'>
                   <div className='grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5'>
                     <div className='md:col-span-5'>
-                      <label for='full_name'>Full Name</label>
+                      <label htmlFor='full_name'>Full Name</label>
                       <input
                         type='text'
                         name='full_name'
@@ -49,7 +49,7 @@ const SignUp = () => {
                     </div>
 
                     <div className='md:col-span-5'>
-                      <label for='email'>Email Address</label>
+                      <label htmlFor='email'>Email Address</label>
                       <input
                         type='email'
                         name='email'
@@ -64,7 +64,7 @@ const SignUp = () => {
                   
 
                     <div className='md:col-span-3'>
-                      <label for='address'>Address / Street</label>
+                      <label htmlFor='address'>Address / Street</label>
                       <input
                         type='text'
                         name='address'
@@ -76,7 +76,7 @@ const SignUp = () => {
                     </div>
 
                     <div className='md:col-span-2'>
-                      <label for='city'>City</label>
+                      <label htmlFor='city'>City</label>
                       <input
                         type='text'
                         name='city'
@@ -87,7 +87,7 @@ const SignUp = () => {
                       />
                     </div>
                     <div className='md:col-span-3'>
-                      <label for='password'>Password</label>
+                      <label htmlFor='password'>Password</label>
                       <input
                         type='password'
                         name='password'
@@ -100,7 +100,7 @@ const SignUp = () => {
                     </div>
                    
                     <div className='md:col-span-2'>
-                      <label for='confirmPassword'>Confirm Password</label>
+                      <label htmlFor='confirmPassword'>Confirm Password</label>
                       <input
                         type='password'
                         name='confirmPassword'
@@ -119,7 +119,7 @@ const SignUp = () => {
                           className='form-checkbox'
                           {...register('termandCondition')}
                         />
-                        <label for='billing_same' className='ml-2'>
+                        <label htmlFor='billing_same' className='ml-2'>
                           Terms and Condition
                         </label>
                       </div>
