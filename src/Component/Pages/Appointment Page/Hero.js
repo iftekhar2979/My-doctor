@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import React from 'react';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
@@ -11,7 +12,7 @@ const Hero = ({selected,setSelected}) => {
         <div className="hero-content flex-col lg:flex-row">
         <DayPicker
         mode="single"
-        selected={selected}
+        selected={format(selected,"PP")}
         onSelect={setSelected}
       
         />

@@ -4,7 +4,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Button from '../../Component/utiltiyComponent/Button';
 
-const Modal = ({ service, selected, setService }) => {
+const Modal = ({ service, selected, setService,refetch }) => {
   // console.log(selected)
   const {
     register,
@@ -18,6 +18,7 @@ const Modal = ({ service, selected, setService }) => {
     .then(res=>console.log(res))
     .catch(err=>console.log(err))
     setService('');
+    refetch()
   };
   return (
     <div className='flex justify-center'>
@@ -31,7 +32,7 @@ const Modal = ({ service, selected, setService }) => {
               <input
                 type='text'
                 className='input input-bordered w-full max-w-xs bg-warning'
-                value={format(selected,'PP')}
+                value={format(selected,"PP")}
                 {...register('bookingDate', { required: true })}
               />
             </div>
