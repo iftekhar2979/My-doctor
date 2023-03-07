@@ -1,7 +1,6 @@
 import { format } from 'date-fns';
 import React, { useState } from 'react';
 import { useQuery } from 'react-query';
-import Loading from '../../utiltiyComponent/Loading';
 import Modal from '../../utiltiyComponent/Modal';
 import AvailableAppointment from './AvailableAppointment';
 import Hero from './Hero';
@@ -21,16 +20,16 @@ const Appointment = () => {
       return data;
     },
   });
-  if(isLoading){
-    return <Loading></Loading>
-  }
+ 
   return (
     <div>
       <Hero selected={selected} setSelected={setSelected}></Hero>
       <AvailableAppointment selected={selected}></AvailableAppointment>
+    
       <TotalAppoinment
         totalAppointments={totalAppointments}
         selected={selected}
+        isLoading={isLoading}
         setService={setService}
       ></TotalAppoinment>
 

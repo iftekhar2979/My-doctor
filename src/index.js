@@ -5,16 +5,20 @@ import {
   QueryClientProvider
 } from 'react-query';
 import { RouterProvider } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import UserContext from './Component/Context/UserContext';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { router } from './Route/router';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient()
+
 root.render(
   <React.StrictMode>
        <QueryClientProvider client={queryClient}>
        <UserContext>
+       <ToastContainer />
      <RouterProvider router={router}></RouterProvider>
      </UserContext>
      </QueryClientProvider>

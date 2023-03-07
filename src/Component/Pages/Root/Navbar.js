@@ -33,6 +33,7 @@ const Navbar = () => {
             </li>
             <li><Link to="">REVIEWS</Link></li>
             <li><Link to="">CONTACT US</Link></li>
+            <li><Link to="/dashboard">DASHBOARD</Link></li>
             <li><Link to="/login">LOGIN</Link></li>
             <li>{user?.email}</li>
             </ul>
@@ -54,6 +55,7 @@ const Navbar = () => {
             </li>
             <li><Link to="">REVIEWS</Link></li>
             <li><Link to="">CONTACT US</Link></li>
+            <li><Link to="/dashboard">DASHBOARD</Link></li>
             {user ?<li><Link onClick={handleSignOut}>SignOut</Link></li>:<li><Link to="/login">LOGIN</Link></li>}
            
             <li>{user?.email}</li>
