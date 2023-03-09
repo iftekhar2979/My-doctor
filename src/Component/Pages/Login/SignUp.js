@@ -2,20 +2,35 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/UserContext';
+import postDocument from '../../hooks/postDocument';
 const SignUp = () => {
-  const { register, handleSubmit,watch,formState: { errors } } = useForm();
-  const {createNewUser,setUser,updateUserProfile}=useContext(AuthContext)
+  
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext);
   const onSubmit = (obj) => {
-    const {displayName,email,password,address,city}=obj
-    createNewUser(email,password)
-    .then(result=>{
-       const user=result.user
-       updateUserProfile(displayName)
-       setUser(user)
-    }).catch(err=>{
-       console.log("err : ",err.message)
-    })
-   }
+    const { displayName, email, password, address, city } = obj;
+
+    // console.log({ ...obj });
+    createNewUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        updateUserProfile(displayName);
+        // setFormData({ ...obj });
+        postDocument('http://localhost:8000/createUser',{...obj})
+        delete obj.password
+        delete obj.confirmPassoword
+        setUser({user,...obj});
+      })
+      .catch((err) => {
+        console.log('err : ', err.message);
+      });
+  };
 
   return (
     <div className='min-h-screen p-6 bg-gray-100 flex items-center justify-center'>
@@ -37,76 +52,79 @@ const SignUp = () => {
                         type='text'
                         name='full_name'
                         id='full_name'
-                        className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${errors.displayName?.type === 'required'&& "border-red-400 shadow-md"}`}
-                        {...register('displayName',{required:true})}
-                        aria-invalid={errors.displayName?'true':'false'}
-                        placeholder={errors.displayName?.type === 'required' &&"Name is required"}
+                        className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${
+                          errors.displayName?.type === 'required' &&
+                          'border-red-400 shadow-md'
+                        }`}
+                        {...register('displayName', { required: true })}
+                        aria-invalid={errors.displayName ? 'true' : 'false'}
+                        placeholder={
+                          errors.displayName?.type === 'required' &&
+                          'Name is required'
+                        }
                       />
                     </div>
-                    <div>
-
-                    
-                    </div>
+                    <div></div>
 
                     <div className='md:col-span-5'>
                       <label htmlFor='email'>Email Address</label>
                       <input
                         type='email'
-                        name='email'
-                        id='email'
-                        className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${errors.email?.type === 'required'&& " border-red-400 shadow-md"}`}
-                        {...register('email',{ required: true })}
-                        aria-invalid={errors.email?'true':'false'}
-                        placeholder= {errors.email?.type === 'required' && "Email is required"}
-                        
+                        className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${
+                          errors.email?.type === 'required' &&
+                          ' border-red-400 shadow-md'
+                        }`}
+                        {...register('email', { required: true })}
+                        aria-invalid={errors.email ? 'true' : 'false'}
+                        placeholder={
+                          errors.email?.type === 'required' &&
+                          'Email is required'
+                        }
                       />
                     </div>
-                  
 
                     <div className='md:col-span-3'>
-                      <label htmlFor='address'>Address / Street</label>
+                      <label >Address / Street</label>
                       <input
                         type='text'
-                        name='address'
-                        id='address'
                         className='h-10 border mt-1 rounded px-4 w-full bg-gray-50'
-                        {...register('Address')}
+                        {...register('address')}
                         placeholder=''
                       />
                     </div>
 
                     <div className='md:col-span-2'>
-                      <label htmlFor='city'>City</label>
+                      <label >City</label>
                       <input
                         type='text'
-                        name='city'
-                        id='city'
                         className='h-10 border mt-1 rounded px-4 w-full bg-gray-50'
                         {...register('city')}
                         placeholder=''
                       />
                     </div>
                     <div className='md:col-span-3'>
-                      <label htmlFor='password'>Password</label>
+                      <label >Password</label>
                       <input
                         type='password'
-                        name='password'
-                        id='password'
-                        className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${errors.email?.type === 'required'&& " border-red-400 shadow-md"}`}
-                        {...register('password',{ required: true })}
-                        aria-invalid={errors.password?'true':'false'}
-                        placeholder= {errors.password?.type === 'required' && "Email is required"}
+                        className={`h-10 border mt-1 rounded px-4 w-full bg-gray-50 ${
+                          errors.email?.type === 'required' &&
+                          ' border-red-400 shadow-md'
+                        }`}
+                        {...register('password', { required: true })}
+                        aria-invalid={errors.password ? 'true' : 'false'}
+                        placeholder={
+                          errors.password?.type === 'required' &&
+                          'password is required'
+                        }
                       />
                     </div>
-                   
+
                     <div className='md:col-span-2'>
                       <label htmlFor='confirmPassword'>Confirm Password</label>
                       <input
                         type='password'
-                        name='confirmPassword'
-                        id='confirmPassword'
                         className='h-10 border mt-1 rounded px-4 w-full bg-gray-50'
-                        {...register('confirmPassoword',{ required: true })}
+                        {...register('confirmPassoword', { required: true })}
                         placeholder=''
                       />
                     </div>
@@ -114,8 +132,6 @@ const SignUp = () => {
                       <div className='inline-flex items-center'>
                         <input
                           type='checkbox'
-                          name='billing_same'
-                          id='billing_same'
                           className='form-checkbox'
                           {...register('termandCondition')}
                         />

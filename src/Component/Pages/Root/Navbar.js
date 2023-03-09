@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from '../../Context/UserContext';
 const Navbar = () => {
   const {user,signOutUser,setUser}=useContext(AuthContext)
+  console.log(user)
   const handleSignOut=()=>{
     signOutUser()
     .then(result=>{
@@ -58,7 +59,7 @@ const Navbar = () => {
             <li><Link to="/dashboard">DASHBOARD</Link></li>
             {user ?<li><Link onClick={handleSignOut}>SignOut</Link></li>:<li><Link to="/login">LOGIN</Link></li>}
            
-            <li>{user?.email}</li>
+            <li>{user?.displayName}</li>
            
           </ul>
         </div>

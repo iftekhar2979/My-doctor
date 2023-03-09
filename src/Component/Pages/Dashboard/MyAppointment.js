@@ -15,12 +15,11 @@ const MyAppointment = () => {
           return data;
         },
       });
-  
     return (
         <div className=''>
             <div className="overflow-x-auto">
   <table className="table table-zebra w-full">
-    {/* head */}
+    
     <thead>
       <tr>
         <th></th>
