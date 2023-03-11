@@ -1,17 +1,19 @@
-import React, { useContext, useState } from 'react';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import github from '../../../asset/github.svg';
 import google from '../../../asset/google.svg';
 import password from '../../../asset/password.svg';
 import { AuthContext } from '../../Context/UserContext';
-import useFetch from '../../hooks/useFetch';
 import varifyJWT from '../../hooks/varifyJWT';
 import Button from '../../utiltiyComponent/Button';
 const Login = () => {
-  const { signIn, setUser, user } = useContext(AuthContext);
-  const [email,setEmail]=useState('')
-  const {userData}=useFetch(`http://localhost:8000/findLoggedInUser?email`,email)
+  const { signIn, setUser, user,setuserInfo } = useContext(AuthContext);
+  const [email, setEmail] = useState(user?.email);
+  const [error,setError]=useState()
+  const [userData,setUserData]=useState()
+
 
   const {
     register,
@@ -23,20 +25,31 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
 
-  const onSubmit = (obj) => {
-    const { email, password } = obj;
-    signIn(email, password)
-      .then((result) => {
-        const user = result.user;
+  useEffect(()=>{
+  
+    // const url=`http://localhost:8000/findLoggedInUser?email=${email}`
+    axios.get(`http://localhost:8000/findLoggedInUser?email=${email}`)
+    .then(responce=> { 
+      setUserData(responce.data)})
+       .catch(err=>console.log(err))
+  },[email])
 
-        navigate(from, { replace: true });
-       varifyJWT(user)
-       setEmail(user?.email)
-       console.log(...userData)
+
+    const onSubmit = (obj) => {
+    const { email, password } = obj;
+   
+    signIn(email, password)
+    .then((result) => {
+      const user = result.user;
+      navigate(from, { replace: true });
+      varifyJWT(user);
         setUser(user);
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) =>setError(err.message));
+      
   };
+  setuserInfo(userData)
+
   return (
     <div className='bg-base-300'>
       <div className='p-8 lg:w-1/2 mx-auto'>
@@ -84,12 +97,12 @@ const Login = () => {
                 <img src={password} alt='' className='pl-2 w-6' />
               </div>
             </div>
-
+    <h2 className='text-error'>{error && "User Not Found"}</h2>
             <div className='flex items-center justify-center mt-8'>
               <Button className=' hover:bg-indigo-600 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5'>
                 Sign In
               </Button>
-              <div className='divider-vertical'></div>
+              <div className='divider-vertical text-error'></div>
             </div>
           </form>
           <div>

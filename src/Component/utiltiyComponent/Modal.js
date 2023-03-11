@@ -18,7 +18,7 @@ const Modal = ({ service, selected, setService, refetch }) => {
     axios
       .post('http://localhost:8000/booking', { service: service.name, ...obj })
       .then((res) => {
-        console.log(res)
+       
         if (res.data.service) {
           toast.success('Added Successfully', {
             position: 'top-center',

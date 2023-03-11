@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SingleBooking = ({data,index}) => {
-    console.log(data)
+ 
     const {service,bookingDate,email,time}=data
     return (
         <tr>

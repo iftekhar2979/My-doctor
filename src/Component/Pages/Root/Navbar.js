@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from '../../Context/UserContext';
 const Navbar = () => {
   const {user,signOutUser,setUser}=useContext(AuthContext)
-  console.log(user)
+ 
   const handleSignOut=()=>{
     signOutUser()
     .then(result=>{

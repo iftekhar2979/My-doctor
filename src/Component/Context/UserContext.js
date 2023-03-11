@@ -7,7 +7,7 @@ import { app } from '../../firebase/firebase.init';
   export const AuthContext=createContext(null)
    const UserContext = ({children}) => {
   
-    
+      const [userInfo,setuserInfo]=useState()
       const [user,setUser]=useState()
       const [loading,setLoading]=useState(true)
       const auth = getAuth(app)
@@ -22,6 +22,7 @@ import { app } from '../../firebase/firebase.init';
         return signInWithEmailAndPassword(auth, email, password);
       };
       const signOutUser = () => {
+      
         return signOut(auth);
       };
      
@@ -43,7 +44,7 @@ import { app } from '../../firebase/firebase.init';
           });
         }, [auth]);
       const object={
-          createNewUser,signIn,signOutUser,updateUserProfile,setUser,user,loading
+          createNewUser,signIn,signOutUser,updateUserProfile,setUser,user,loading,setuserInfo,userInfo
   
       }
       return (

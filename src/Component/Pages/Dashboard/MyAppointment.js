@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useQuery } from 'react-query';
 import { AuthContext } from '../../Context/UserContext';
+import Loading from '../../utiltiyComponent/Loading';
 import SingleBooking from './SingleBooking';
 
 const MyAppointment = () => {
@@ -9,12 +10,20 @@ const MyAppointment = () => {
         queryKey: ['myBooking', user?.email],
         queryFn: async () => {
           const res = await fetch(
-            `http://localhost:8000/userbooking?email=${user?.email}`
+            `http://localhost:8000/userbooking?email=${user?.email}`,{
+              headers:{
+                authorization:`bearer ${localStorage.getItem('token')}`
+              }
+            }
           );
           const data = await res.json();
           return data;
         },
       });
+      console.log(myBooking)
+      if(isLoading){
+        return <Loading></Loading>
+      }
     return (
         <div className=''>
             <div className="overflow-x-auto">
