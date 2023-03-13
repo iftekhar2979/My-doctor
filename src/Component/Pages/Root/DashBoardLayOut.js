@@ -39,8 +39,14 @@ const Root = () => {
             {isAdmin && <li>
               <NavLink to='/dashboard/adddoctor'  className={({ isActive }) =>
               isActive ? "bg-indigo-300" : ''
-            }>All user</NavLink>
+            }>ADD DOCTOR</NavLink>
+
             
+            </li>}
+            {isAdmin && <li>
+              <NavLink to='/dashboard/managedoctor'  className={({ isActive }) =>
+              isActive ? "bg-indigo-300" : ''
+            }>MANAGE DOCTOR</NavLink>  
             </li>}
           </ul>
         </div>
