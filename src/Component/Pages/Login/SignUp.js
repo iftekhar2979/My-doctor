@@ -16,7 +16,7 @@ const SignUp = () => {
   const onSubmit = (obj) => {
     const { displayName, email, password, address, city } = obj;
 
-    // console.log({ ...obj });
+    // ({ ...obj });
     createNewUser(email, password)
       .then((result) => {
         const user = result.user;

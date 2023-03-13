@@ -12,6 +12,9 @@ const ManageDoctor = () => {
       return data;
     },
   });
+  const handleDelete=(id)=>{
+console.log(id)
+  }
   return (
     <div>
       <HeadingSection>Doctor's, </HeadingSection>
@@ -25,6 +28,7 @@ const ManageDoctor = () => {
               <th>DOCTOR NAME</th>
               <th> EMAIL</th>
               <th> SPECIALITIES</th>
+              <th> DELETE</th>
             </tr>
           </thead>
           <tbody>
@@ -34,6 +38,7 @@ const ManageDoctor = () => {
                 key={item._id}
                 index={index}
                 data={item}
+                handleDelete={handleDelete}
              
               ></SingleDoctor>
             ))}

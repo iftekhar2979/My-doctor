@@ -24,12 +24,12 @@ const Alluser = () => {
         }
       })
     .then(res=>{
-        console.log(res.data)
+       console.log(res.data)
     if(res.data.role){
         refetch()
     }
     })
-    .catch(error=>console.log(error))
+    .catch(error=>(error))
   }
   return (
     <div>

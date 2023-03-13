@@ -6,10 +6,10 @@ const useFetch = (email) => {
    const [error,setError]=useState(null)
    useEffect(()=>{
     setLoading(true)
-  console.log(email)
+  (email)
     axios.get(`http://localhost:8000/findLoggedInUser?email=${email}`)
     .then(responce=>  {
-        console.log(responce.data)
+        (responce.data)
        setUserData(responce.data)}
     ).catch(error=>setError(error)
     ).finally(()=>setLoading(false))

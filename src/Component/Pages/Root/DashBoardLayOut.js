@@ -5,7 +5,7 @@ import useCheckAdmin from '../../hooks/useCheckAdmin';
 const Root = () => {
   const {user}=useContext(AuthContext)
   const [isAdmin] = useCheckAdmin(user?.email)
-  console.log(isAdmin)
+ 
   return (
     <div className='container mx-auto px-4'>
     
@@ -29,21 +29,21 @@ const Root = () => {
               isActive ? "bg-indigo-300" : ''
             }>My APPOINTMENT</NavLink>
             </li>
-            {isAdmin && <li>
+            {isAdmin?.isAdmin && <li>
               <NavLink to='/dashboard/allUser'  className={({ isActive }) =>
               isActive ? "bg-indigo-300" : ''
             }>All user</NavLink>
             
             </li>} 
       
-            {isAdmin && <li>
+            {isAdmin?.isAdmin && <li>
               <NavLink to='/dashboard/adddoctor'  className={({ isActive }) =>
               isActive ? "bg-indigo-300" : ''
             }>ADD DOCTOR</NavLink>
 
             
             </li>}
-            {isAdmin && <li>
+            {isAdmin?.isAdmin && <li>
               <NavLink to='/dashboard/managedoctor'  className={({ isActive }) =>
               isActive ? "bg-indigo-300" : ''
             }>MANAGE DOCTOR</NavLink>  

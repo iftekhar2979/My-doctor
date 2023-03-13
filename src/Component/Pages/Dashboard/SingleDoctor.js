@@ -1,7 +1,7 @@
 import React from 'react';
 
-const SingleDoctor = ({data,index}) => {
-    const {doctorName,doctorEmail,specialities,picture}=data
+const SingleDoctor = ({data,index,handleDelete}) => {
+    const {doctorName,doctorEmail,specialities,picture,_id}=data
     return (
         <tr>
         <th>{index+1}</th>
@@ -9,6 +9,7 @@ const SingleDoctor = ({data,index}) => {
         <td>{doctorName}</td>
         <td>{doctorEmail}</td>
         <td>{specialities}</td>
+        <td><button className="p-2 btn-error" onClick={()=>handleDelete(_id)}>Delete</button></td>
       </tr>
     );
 };

@@ -1,5 +1,4 @@
-import axios from 'axios';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import github from '../../../asset/github.svg';
@@ -12,7 +11,7 @@ const Login = () => {
   const { signIn, setUser, user,setuserInfo } = useContext(AuthContext);
   const [email, setEmail] = useState(user?.email);
   const [error,setError]=useState()
-  const [userData,setUserData]=useState()
+
 
 
   const {
@@ -25,14 +24,7 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || '/';
 
-  useEffect(()=>{
   
-    // const url=`http://localhost:8000/findLoggedInUser?email=${email}`
-    axios.get(`http://localhost:8000/findLoggedInUser?email=${email}`)
-    .then(responce=> { 
-      setUserData(responce.data)})
-       .catch(err=>console.log(err))
-  },[email])
 
 
     const onSubmit = (obj) => {
@@ -48,7 +40,7 @@ const Login = () => {
       .catch((err) =>setError(err.message));
       
   };
-  setuserInfo(userData)
+ 
 
   return (
     <div className='bg-base-300'>

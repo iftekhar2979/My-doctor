@@ -8,12 +8,12 @@ const AdminRoute = ({children}) => {
     const {user,loading}=useContext(AuthContext)
     const [isAdmin,isAdminLoading]=useCheckAdmin(user?.email)
     const location=useLocation()
- 
+   
 
-    if(loading || isAdminLoading){
+    if(loading || isAdminLoading ){
         return <Loading></Loading>
     }
-    if(user && isAdmin ){
+    if(isAdmin?.isAdmin){
         return children
     }
     return <Navigate to='/login' state={{from:location}} replace></Navigate>
