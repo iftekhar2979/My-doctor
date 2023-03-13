@@ -2,9 +2,10 @@ import React, { useContext } from 'react';
 
 import { Link } from "react-router-dom";
 import { AuthContext } from '../../Context/UserContext';
+import useCheckAdmin from '../../hooks/useCheckAdmin';
 const Navbar = () => {
   const {user,signOutUser,setUser}=useContext(AuthContext)
- 
+  const {isAdmin}=useCheckAdmin(user?.email)
   const handleSignOut=()=>{
     signOutUser()
     .then(result=>{

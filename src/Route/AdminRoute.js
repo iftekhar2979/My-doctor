@@ -4,14 +4,16 @@ import { AuthContext } from '../Component/Context/UserContext';
 import useCheckAdmin from '../Component/hooks/useCheckAdmin';
 import Loading from '../Component/utiltiyComponent/Loading';
 const AdminRoute = ({children}) => {
+
     const {user,loading}=useContext(AuthContext)
-    const {isAdmin}=useCheckAdmin(user?.email)
+    const [isAdmin,isAdminLoading]=useCheckAdmin(user?.email)
     const location=useLocation()
-    // console.log(loading);
-    if(loading){
+ 
+
+    if(loading || isAdminLoading){
         return <Loading></Loading>
     }
-    if(user && isAdmin?.isAdmin ){
+    if(user && isAdmin ){
         return children
     }
     return <Navigate to='/login' state={{from:location}} replace></Navigate>
