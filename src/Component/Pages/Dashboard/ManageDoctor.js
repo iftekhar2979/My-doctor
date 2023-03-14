@@ -1,10 +1,19 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import { useQuery } from 'react-query';
+import DeletingModal from '../../utiltiyComponent/DeletingModal';
 import HeadingSection from '../../utiltiyComponent/HeadingSection';
+import toastSuccessObj from '../../utiltiyComponent/toastSuccessObj';
 import SingleDoctor from './SingleDoctor';
 
 const ManageDoctor = () => {
-  const {data:doctors=[],isLoading} = useQuery({
+  const [doctor, setDoctor] = useState();
+  // const [isDeleted,isLoadingDelete]=useDeletePost('http://localhost:8000/deleteDoctor/',ids)
+  const {
+    data: doctors = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ['doctors'],
     queryFn: async () => {
       const response = await fetch(`http://localhost:8000/getDoctors`);
@@ -12,9 +21,23 @@ const ManageDoctor = () => {
       return data;
     },
   });
-  const handleDelete=(id)=>{
-console.log(id)
-  }
+  const handleDelete = (id) => {
+    setDoctor(id);
+    refetch();
+  };
+  const handleRemove = () => {
+    axios
+      .delete(`http://localhost:8000/deleteDoctor/${doctor._id}`)
+      .then((res) => {
+        if (res.data.isDeleted) {
+          refetch()
+          toastSuccessObj(res.data.message);
+        
+        }
+      })
+      .catch((error) => error.message);
+      
+  };
   return (
     <div>
       <HeadingSection>Doctor's, </HeadingSection>
@@ -39,12 +62,18 @@ console.log(id)
                 index={index}
                 data={item}
                 handleDelete={handleDelete}
-             
+                doctor={doctor}
               ></SingleDoctor>
             ))}
           </tbody>
         </table>
       </div>
+      <DeletingModal
+        title={`Do You Want To Remove ${doctor?.doctorName}`}
+        details={`Are You you Want to Delete ${doctor?.doctorEmail}`}
+        submit={`Delete`}
+        handleClick={handleRemove}
+      ></DeletingModal>
     </div>
   );
 };

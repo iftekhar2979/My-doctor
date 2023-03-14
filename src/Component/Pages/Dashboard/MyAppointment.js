@@ -20,7 +20,7 @@ const MyAppointment = () => {
           return data;
         },
       });
-      console.log(myBooking)
+      
       if(isLoading){
         return <Loading></Loading>
       }
@@ -39,7 +39,7 @@ const MyAppointment = () => {
       </tr>
     </thead>
     <tbody>
-    {myBooking?.map((item,index)=><SingleBooking key={item._id} index={index} data={item}></SingleBooking>)}
+    {Array.isArray(myBooking) &&myBooking?.map((item,index)=><SingleBooking key={item._id} index={index} data={item}></SingleBooking>)}
     </tbody>
   </table>
 </div>

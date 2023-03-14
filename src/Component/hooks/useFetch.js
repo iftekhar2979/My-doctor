@@ -9,7 +9,7 @@ const useFetch = (email) => {
   (email)
     axios.get(`http://localhost:8000/findLoggedInUser?email=${email}`)
     .then(responce=>  {
-        (responce.data)
+        
        setUserData(responce.data)}
     ).catch(error=>setError(error)
     ).finally(()=>setLoading(false))

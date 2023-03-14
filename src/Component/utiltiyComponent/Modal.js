@@ -43,7 +43,7 @@ const Modal = ({ service, selected, setService, refetch }) => {
           });
         }
       })
-      .catch((err) => (err));
+      .catch((err) => console.log(err));
     setService('');
     refetch();
   };

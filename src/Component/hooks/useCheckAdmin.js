@@ -8,7 +8,7 @@ const useCheckAdmin = (email) => {
         if(email){
             axios.get(`http://localhost:8000/user/admin/${email}`)
             .then(res=>{
-                console.log(res.data)
+
                 setIsAdmin(res.data)
                 setIsAdminLoading(false)
             })
