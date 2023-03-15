@@ -17,9 +17,11 @@ const Appointment = () => {
         `http://localhost:8000/appointments?bookingDate=${selectedDate}`
       );
       const data = await res.json();
+ 
       return data;
     },
   });
+
  
   return (
     <div>

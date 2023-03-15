@@ -16,7 +16,7 @@ const Modal = ({ service, selected, setService, refetch }) => {
   } = useForm();
   const onSubmit = (obj) => {
     axios
-      .post('http://localhost:8000/booking', { service: service.name, ...obj })
+      .post('http://localhost:8000/booking', { service: service.name, ...obj,price:service.price })
       .then((res) => {
        
         if (res.data.service) {

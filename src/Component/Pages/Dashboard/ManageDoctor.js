@@ -11,7 +11,6 @@ const ManageDoctor = () => {
   // const [isDeleted,isLoadingDelete]=useDeletePost('http://localhost:8000/deleteDoctor/',ids)
   const {
     data: doctors = [],
-    isLoading,
     refetch,
   } = useQuery({
     queryKey: ['doctors'],
