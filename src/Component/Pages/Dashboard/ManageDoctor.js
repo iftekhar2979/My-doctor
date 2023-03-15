@@ -16,7 +16,11 @@ const ManageDoctor = () => {
   } = useQuery({
     queryKey: ['doctors'],
     queryFn: async () => {
-      const response = await fetch(`http://localhost:8000/getDoctors`);
+      const response = await fetch(`http://localhost:8000/getDoctors`,{
+        method: 'POST',
+        headers: {
+          authorization: `bearer ${localStorage.getItem('token')}`,
+        }});
       const data = await response.json();
       return data;
     },
@@ -27,12 +31,15 @@ const ManageDoctor = () => {
   };
   const handleRemove = () => {
     axios
-      .delete(`http://localhost:8000/deleteDoctor/${doctor._id}`)
+      .delete(`http://localhost:8000/deleteDoctor/${doctor._id}`,{
+        method: 'DELETE',
+        headers: {
+          authorization: `bearer ${localStorage.getItem('token')}`,
+        }})
       .then((res) => {
         if (res.data.isDeleted) {
           refetch()
           toastSuccessObj(res.data.message);
-        
         }
       })
       .catch((error) => error.message);
