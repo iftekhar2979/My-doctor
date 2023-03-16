@@ -48,6 +48,12 @@ const Root = () => {
               isActive ? "bg-indigo-300" : ''
             }>MANAGE DOCTOR</NavLink>  
             </li>}
+            
+            {isAdmin?.isAdmin && <li>
+              <NavLink to='/dashboard/totalOrders'  className={({ isActive }) =>
+              isActive ? "bg-indigo-300" : ''
+            }>Total Orders</NavLink>  
+            </li>}
           </ul>
         </div>
       </div>

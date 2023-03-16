@@ -6,6 +6,7 @@ import Alluser from '../Component/Pages/Dashboard/Alluser';
 import ManageDoctor from '../Component/Pages/Dashboard/ManageDoctor';
 import MyAppointment from '../Component/Pages/Dashboard/MyAppointment';
 import Payment from '../Component/Pages/Dashboard/Payment';
+import TotalOrders from '../Component/Pages/Dashboard/TotalOrders';
 import Home from '../Component/Pages/Home/Home';
 import Login from '../Component/Pages/Login/Login';
 import SignUp from '../Component/Pages/Login/SignUp';
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
             loader:async({params})=>{
               return fetch(`http://localhost:8000/booking/${params.id}`)
             }
+          },
+          {
+            path:'/dashboard/totalOrders',
+            element:<TotalOrders></TotalOrders>
           }
         ],
       },
